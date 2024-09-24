@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useWriteContract } from 'wagmi';
 import { parseUnits } from 'viem';
-import usdcContracts from '@/contracts/usdc';
 import egusdContracts from '@/contracts/egusd';
 
 export function useRedeemUSD() {

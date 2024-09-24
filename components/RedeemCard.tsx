@@ -4,7 +4,6 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { useUSDCBalance } from "@/hooks/useUSDCBalance";
 import { useEgUSDBalance } from "@/hooks/useEgUSDBalance";
 import { useRedeemUSD } from "@/hooks/useRedeemEgUSD copy";
 
