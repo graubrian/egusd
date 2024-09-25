@@ -2,12 +2,10 @@
 import { useGetTotalValueLockedTBILL } from '@/hooks/useGetTotalValueLockedTBILL';
 import { useGetEgUSDTotalSupply } from '@/hooks/useGetEgUSDTotalSupply';
 import { Skeleton } from "@/components/ui/skeleton";
-import { useEgUSDBalance } from '@/hooks/useEgUSDBalance';
 
 export default function Home() {
   const { amount: tBILLAmount, isLoading: tBILLLockedIsLoading, isError } = useGetTotalValueLockedTBILL();
   const { amount: egUSDAmount, isLoading: egUSDIsLoading, isError: egUSDIsError } = useGetEgUSDTotalSupply();
-  const { amount: egUSDBalance, isLoading: egUSDBalanceIsLoading, isError: egUSDBalanceIsError } = useEgUSDBalance();
 
   return (
     <main className='flex-grow flex md:flex-row flex-col'>
