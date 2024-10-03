@@ -52,7 +52,7 @@ export function StakeCalculatorCard() {
   return (
     <Card className="w-full max-w-md">
       <CardHeader>
-        <CardTitle>Current Restake APR</CardTitle>
+        <CardTitle>Calculate Restake APR</CardTitle>
         <CardDescription>As a restaker you can calculate how much yield your restake would earn at current values</CardDescription>
       </CardHeader>
       <CardContent>
