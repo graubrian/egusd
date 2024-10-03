@@ -25,7 +25,7 @@ export function Navbar() {
               <li><Link href="/redeem" className="hover:text-gray-300">Redeem</Link></li>
               <li><Link href="/stake" className="hover:text-gray-300">Stake</Link></li>
               <li><Link href="/utils" className="hover:text-gray-300">Utils</Link></li>
-              <li><Link href="/whitepaper" className="hover:text-gray-300">Whitepaper</Link></li>
+              <li><a href="https://riquelmista.notion.site/Eager-Protocol-Whitepaper-Draft-1040d179251580da9dd5e8e2f4eef98a?pvs=4" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">Whitepaper</a></li>
             </ul>
           </nav>
         </div>
