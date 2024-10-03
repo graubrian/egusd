@@ -97,10 +97,6 @@ export function StakeCalculatorCard() {
       <div className="border-t border-gray-200 mb-4"></div>
       <CardFooter className="flex flex-col items-start space-y-2">
         <div className="flex justify-between w-full">
-          <span>Amount of ETH restaked:</span>
-          <span className="font-bold">{Number(stakedInputAmount)}</span>
-        </div>
-        <div className="flex justify-between w-full">
           <span>APR:</span>
           <span className="font-bold">{apr.toFixed(2)}%</span>
         </div>
