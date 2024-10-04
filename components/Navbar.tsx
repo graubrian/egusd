@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +13,9 @@ export function Navbar() {
     <header className="bg-black text-white py-2 px-4">
       <div className="flex justify-between items-center">
         <div className="flex items-center">
+          <Link href="/" className="mr-4">
+            <Image src="/logo.svg" alt="Logo" width={60} height={60} /> {/* Increased size */}
+          </Link>
           <button
             className="md:hidden mr-2 h-full flex items-center"
             onClick={() => setIsOpen(!isOpen)}

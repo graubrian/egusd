@@ -20,7 +20,7 @@ export function StakeCalculatorCard() {
   }, []);
 
   const yieldDistributedToRestakers = useMemo(() => {
-    return (TBILLS_LOCKED * (BUIDL_YIELD / 100) * YIELDS_REDIRECTED_TO_RESTAKERS).toFixed(2);
+    return (TBILLS_LOCKED * (BUIDL_YIELD / 100) * YIELDS_REDIRECTED_TO_RESTAKERS * 0.9).toFixed(2);
   }, []);
 
   const apr = useMemo(() => {
@@ -74,8 +74,11 @@ export function StakeCalculatorCard() {
             <span className="font-bold">{(YIELDS_REDIRECTED_TO_RESTAKERS * 100).toFixed(2)}%</span>
           </div>
           <div className="flex justify-between w-full">
-            <span>Yield distributed to restakers:</span>
+            <span>$ distributed to restakers:</span>
             <span className="font-bold">${yieldDistributedToRestakers}</span>
+          </div>
+          <div className="flex justify-between w-full">
+          <span className="text-xs text-gray-500">Net dollars (includes a 10% operator fee)</span>
           </div>
         </div>
       </CardContent>
