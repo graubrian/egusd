@@ -2,20 +2,21 @@
 import { useGetTotalValueLockedTBILL } from '@/hooks/useGetTotalValueLockedTBILL';
 import { useGetEgUSDTotalSupply } from '@/hooks/useGetEgUSDTotalSupply';
 import { Skeleton } from "@/components/ui/skeleton";
+import { StakeCalculatorCard } from '@/components/StakeCalculatorCard';
 
 export default function Home() {
-  const { amount: tBILLAmount, isLoading: tBILLLockedIsLoading, isError } = useGetTotalValueLockedTBILL();
+  const { amount: tBILLAmount, isLoading: tBILLLockedIsLoading, isError: tBILLIsError } = useGetTotalValueLockedTBILL();
   const { amount: egUSDAmount, isLoading: egUSDIsLoading, isError: egUSDIsError } = useGetEgUSDTotalSupply();
 
   return (
-    <main className='flex-grow flex md:flex-row flex-col'>
-      <div className="flex-grow flex items-center bg-gray-100 p-4 sm:p-8">
+    <main className='flex-grow flex flex-col md:flex-row'>
+      <div className="flex-grow flex items-center bg-gray-100 p-4 sm:p-8 md:w-1/2">
         <div className="w-full max-w-xl">
           <div className="space-y-8">
             <div>
               {tBILLLockedIsLoading ? (
                 <Skeleton className="h-16 w-48 mb-2" />
-              ) : isError ? (
+              ) : tBILLIsError ? (
                 <p className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-2 text-red-500">Error fetching data</p>
               ) : (
                 <p className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-2">
@@ -36,14 +37,7 @@ export default function Home() {
               )}
               <h2 className="text-base sm:text-lg text-gray-600">egUSD Supply</h2>
             </div>
-          </div>
-        </div>
-      </div>
-      <div className="flex-grow flex items-center bg-gray-100 p-4 sm:p-8">
-        <div className="w-full max-w-xl">
-          <div className="space-y-8">
             <div>
-
               <p className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-2">
                 {new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(Number("32"))}
               </p>
@@ -57,6 +51,9 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </div>
+      <div className="flex-grow flex items-center justify-center bg-gray-100 p-4 sm:p-8 md:w-1/2">
+        <StakeCalculatorCard />
       </div>
     </main>
   );
