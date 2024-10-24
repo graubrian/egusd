@@ -40,7 +40,7 @@ export function StakeCalculatorCard() {
     return ((egUSDSupply * BUIDL_YIELD * YIELD_DISTRIBUTION_PERCENTAGE) / stakedAmountInUSD) * 100;
   }, [egUSDSupplyInputAmount, stakedInputAmount, ethPrice]);
 
-  const formatNumber = (num) => {
+  const formatNumber = (num: any) => {
     return num.toLocaleString('en-US', { maximumFractionDigits: 2 });
   };
 
