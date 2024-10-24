@@ -21,7 +21,11 @@ export function StakeCalculatorCard() {
   const yieldDistributedToRestakers = useMemo(() => {
     const egUSDSupply = parseFloat(egUSDSupplyInputAmount);
 
-    return ((egUSDSupply * BUIDL_YIELD * YIELD_DISTRIBUTION_PERCENTAGE) * 100);
+    if(isNaN(egUSDSupply)) {
+      return 0;
+    }
+
+    return ((egUSDSupply * BUIDL_YIELD * YIELD_DISTRIBUTION_PERCENTAGE));
   }, [egUSDSupplyInputAmount]);
 
   const apr = useMemo(() => {
@@ -35,6 +39,10 @@ export function StakeCalculatorCard() {
     const stakedAmountInUSD = stakedETH * ethPrice;
     return ((egUSDSupply * BUIDL_YIELD * YIELD_DISTRIBUTION_PERCENTAGE) / stakedAmountInUSD) * 100;
   }, [egUSDSupplyInputAmount, stakedInputAmount, ethPrice]);
+
+  const formatNumber = (num) => {
+    return num.toLocaleString('en-US', { maximumFractionDigits: 2 });
+  };
 
   return (
     <Card className="w-full max-w-md">
@@ -76,7 +84,7 @@ export function StakeCalculatorCard() {
           </div>
           <div className="flex justify-between w-full">
             <span>$ distributed to restakers:</span>
-            <span className="font-bold">${yieldDistributedToRestakers.toFixed(2)}</span>
+            <span className="font-bold">${formatNumber(yieldDistributedToRestakers)}</span>
           </div>
           <div className="flex justify-between w-full">
           <span className="text-xs text-gray-500">Net dollars (includes a 10% operator fee)</span>
@@ -87,7 +95,7 @@ export function StakeCalculatorCard() {
       <CardFooter className="flex flex-col items-start space-y-2">
         <div className="flex justify-between w-full">
           <span>APR:</span>
-          <span className="font-bold">{apr.toFixed(2)}%</span>
+          <span className="font-bold">{formatNumber(apr)}%</span>
         </div>
       </CardFooter>
     </Card>
