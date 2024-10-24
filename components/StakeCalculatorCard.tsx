@@ -5,10 +5,9 @@ import { Input } from "@/components/ui/input";
 import { fetchEthPrice } from "@/utils/api";
 
 // Constants
-const TBILLS_LOCKED = 10000000; // 10 million
 const YIELDS_REDIRECTED_TO_RESTAKERS = 0.2; // 20%
 const YIELD_DISTRIBUTION_PERCENTAGE = 0.20; // 20%
-const BUIDL_YIELD = 4.32;
+const BUIDL_YIELD = 0.0432;
 
 export function StakeCalculatorCard() {
   const [stakedInputAmount, setStakedInputAmount] = useState('')
@@ -20,8 +19,10 @@ export function StakeCalculatorCard() {
   }, []);
 
   const yieldDistributedToRestakers = useMemo(() => {
-    return (TBILLS_LOCKED * (BUIDL_YIELD / 100) * YIELDS_REDIRECTED_TO_RESTAKERS * 0.9).toFixed(2);
-  }, []);
+    const egUSDSupply = parseFloat(egUSDSupplyInputAmount);
+
+    return ((egUSDSupply * BUIDL_YIELD * YIELD_DISTRIBUTION_PERCENTAGE) * 100);
+  }, [egUSDSupplyInputAmount]);
 
   const apr = useMemo(() => {
     const egUSDSupply = parseFloat(egUSDSupplyInputAmount);
@@ -32,7 +33,7 @@ export function StakeCalculatorCard() {
     }
 
     const stakedAmountInUSD = stakedETH * ethPrice;
-    return ((egUSDSupply * 0.0432 * YIELD_DISTRIBUTION_PERCENTAGE) / stakedAmountInUSD) * 100;
+    return ((egUSDSupply * BUIDL_YIELD * YIELD_DISTRIBUTION_PERCENTAGE) / stakedAmountInUSD) * 100;
   }, [egUSDSupplyInputAmount, stakedInputAmount, ethPrice]);
 
   return (
@@ -67,7 +68,7 @@ export function StakeCalculatorCard() {
           </div>
           <div className="flex justify-between w-full">
             <span>Underlying TBILL yield:</span>
-            <span className="font-bold">{BUIDL_YIELD}%</span>
+            <span className="font-bold">{BUIDL_YIELD * 100}%</span>
           </div>
           <div className="flex justify-between w-full">
             <span>% distributed to restakers:</span>
@@ -75,7 +76,7 @@ export function StakeCalculatorCard() {
           </div>
           <div className="flex justify-between w-full">
             <span>$ distributed to restakers:</span>
-            <span className="font-bold">${yieldDistributedToRestakers}</span>
+            <span className="font-bold">${yieldDistributedToRestakers.toFixed(2)}</span>
           </div>
           <div className="flex justify-between w-full">
           <span className="text-xs text-gray-500">Net dollars (includes a 10% operator fee)</span>
